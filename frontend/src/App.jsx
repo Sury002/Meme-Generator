@@ -26,7 +26,6 @@ function App() {
 
   useEffect(() => { 
     fetchHistory(); 
-    // Check user's preferred color scheme
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setIsDarkMode(prefersDark);
   }, []);

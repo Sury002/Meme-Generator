@@ -41,7 +41,7 @@ exports.uploadMeme = async (req, res) => {
   } catch (err) {
     console.error('Upload error:', err);
     
-    // Clean up uploaded file if error occurred
+   
     if (req.file && fs.existsSync(req.file.path)) {
       fs.unlinkSync(req.file.path);
     }
@@ -68,7 +68,7 @@ exports.getMemes = async (req, res) => {
       Meme.countDocuments()
     ]);
 
-    // Add fullImageUrl to each meme
+    
     const memesWithUrls = memes.map(meme => ({
       ...meme,
       fullImageUrl: `${process.env.BASE_URL}${meme.imageUrl}`

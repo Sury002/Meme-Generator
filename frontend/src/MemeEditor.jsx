@@ -17,7 +17,6 @@ export default function MemeEditor({ meme, apiUrl, isDarkMode, onClose }) {
     
     setIsDownloading(true);
     try {
-      // Ensure the image is loaded before capturing
       const img = new Image();
       img.crossOrigin = "Anonymous";
       img.src = `${apiUrl}${meme.imageUrl}`;

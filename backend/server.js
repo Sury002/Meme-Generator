@@ -19,17 +19,17 @@ app.use(helmet());
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 100 
 });
 app.use(limiter);
 
 // CORS configuration
 const allowedOrigins = [
-  process.env.FRONTEND_URL,       // Netlify
-  'http://localhost:5173',        // Vite dev
-  'http://localhost:3000'         // React dev (CRA)
-].filter(Boolean); // remove undefined
+  process.env.FRONTEND_URL,       
+  'http://localhost:5173',        
+  'http://localhost:3000'         
+].filter(Boolean); 
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -56,7 +56,6 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: process.env.UPLOAD_LIMIT }));
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ Serve static files (uploads) with CORS headers
 app.use(
   '/uploads',
   express.static(path.join(__dirname, 'uploads'), {
@@ -98,7 +97,7 @@ app.get('/api/health', (req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
 
-  // Handle Multer "File too large" error nicely
+  
   if (err.name === 'MulterError' && err.code === 'LIMIT_FILE_SIZE') {
     return res.status(400).json({ error: 'File too large. Max size exceeded.' });
   }

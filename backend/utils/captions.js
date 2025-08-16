@@ -1,4 +1,4 @@
-// Size-based captions
+
 const sizeCategories = {
   small: [
     "Tiny but mighty - proving size isn't everything!",
@@ -26,7 +26,7 @@ const sizeCategories = {
   ]
 };
 
-// Organized by meme categories
+
 const captionCategories = {
   reaction: [
     "My exact reaction when I saw this for the first time!",
@@ -73,11 +73,11 @@ const captionCategories = {
 function generateCaptions(imageInfo) {
   const result = [];
   
-  // Determine size category
+  
   const size = imageInfo.size < 500000 ? 'small' : 
                imageInfo.size < 2000000 ? 'medium' : 'large';
   
-  // Add size-specific caption
+  
   const sizeCaptions = sizeCategories[size];
   result.push(sizeCaptions[Math.floor(Math.random() * sizeCaptions.length)]);
   

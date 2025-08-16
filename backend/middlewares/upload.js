@@ -3,13 +3,13 @@ const path = require('path');
 const sharp = require('sharp');
 const fs = require('fs');
 
-// Create uploads directory if it doesn't exist
+
 const uploadDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Configure disk storage
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir);
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
   }
 });
 
-// Simple file type validation by mimetype
+
 const fileFilter = (req, file, cb) => {
   const validMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
   if (!validMimeTypes.includes(file.mimetype)) {
@@ -30,7 +30,7 @@ const fileFilter = (req, file, cb) => {
   cb(null, true);
 };
 
-// Multer upload middleware
+
 const upload = multer({
   storage,
   limits: {
@@ -39,12 +39,12 @@ const upload = multer({
   fileFilter
 });
 
-// Sharp processing function
+
 const processImage = async (filePath) => {
   try {
     const processedPath = `${filePath}.processed`;
 
-    // Resize and compress
+    
     await sharp(filePath)
       .resize({
         width: 800,
@@ -55,13 +55,13 @@ const processImage = async (filePath) => {
       .jpeg({ quality: 80 })
       .toFile(processedPath);
 
-    // Replace original with processed
+    
     await fs.promises.rename(processedPath, filePath);
 
     return true;
   } catch (err) {
     console.error('Image processing failed:', err);
-    // Cleanup on failure
+    
     try {
       if (fs.existsSync(filePath)) await fs.promises.unlink(filePath);
       if (fs.existsSync(`${filePath}.processed`)) await fs.promises.unlink(`${filePath}.processed`);
