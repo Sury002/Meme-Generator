@@ -25,12 +25,18 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL,       // Netlify
+  'http://localhost:5173',        // Vite dev
+  'http://localhost:3000'         // React dev (CRA)
+].filter(Boolean); // remove undefined
+
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:5173';
-    if (!origin || origin === allowedOrigin) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.error(`❌ CORS blocked for origin: ${origin}`);
       callback(new Error(`CORS blocked for origin: ${origin}`));
     }
   },
@@ -38,7 +44,9 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 };
+
 app.use(cors(corsOptions));
+
 
 
 // Request logging
