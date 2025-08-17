@@ -105,7 +105,7 @@ function App() {
         >
           <div className="flex justify-center gap-6 px-8 items-center mb-6">
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500 mb-4">
-              AI Meme Generator
+              Meme Generator
             </h1>
             <button
               onClick={toggleDarkMode}
@@ -124,7 +124,7 @@ function App() {
             </button>
           </div>
           <p className={`text-lg max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-            Transform your images into hilarious memes with AI-generated captions. Create, customize, and download in seconds!
+            Transform your images into hilarious memes with Auto-generated captions. Create, customize, and download in seconds!
           </p>
         </motion.header>
 
@@ -288,7 +288,7 @@ function App() {
         <footer className={`mt-16 pt-8 border-t ${isDarkMode ? 'border-gray-700 text-gray-400' : 'border-gray-200 text-gray-500'}`}>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-sm">© {new Date().getFullYear()} AI Meme Generator. All rights reserved.</p>
+              <p className="text-sm">© {new Date().getFullYear()}Meme Generator. All rights reserved.</p>
             </div>
             <div className="flex space-x-6">
               <a href="#" className="text-sm hover:underline">Terms</a>
