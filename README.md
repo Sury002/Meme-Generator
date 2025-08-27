@@ -1,4 +1,4 @@
-#Meme Generator
+## Meme Generator
 
 A full-stack application that allows users to upload images and automatically generate hilarious memes with **AI-powered captions**.  
 Includes meme customization, history management, and download functionality — all wrapped in a modern, responsive UI.
